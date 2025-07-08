@@ -14,11 +14,11 @@
 
 ## 🚀 Features
 
-- ✅ Clean, scrollable, mobile-friendly UI
-- 🧾 Input validation (name, phone, income, etc.)
-- 🏦 Form sections: Personal, Employment, Credit Details
-- 💡 Designed for use in ML/credit analysis backend systems
-- 🔐 Ready for future API and authentication integration
+- Clean, scrollable, mobile-friendly UI
+- Input validation (name, phone, income, etc.)
+- Form sections: Personal, Credit Details
+- Designed for use in ML/credit analysis backend systems
+- Ready for future API and authentication integration
 
 ---
 
