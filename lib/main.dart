@@ -74,62 +74,70 @@ class _UserFormState extends State<UserForm> {
           ),
         ),
         ),
-      body: Padding(
-        padding: EdgeInsetsGeometry.all(16),
-        child: Card(
-          elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(16)),
-          child:Padding(
-            padding: EdgeInsets.all(20),
-            child: Form(
-              key: formKey,
-            child: ListView(
-              children: [
-                buildTextField('Full Name', nameController, validator: (value){
-                  if (value==null || value.isEmpty) return "please Enter your Name";
-                  return null; 
-                }),
-
-
-                buildTextField('Email', emailController, keyboardType: TextInputType.emailAddress, validator: (value){
-                  if (value==null || !value.contains('@')) return "please Enter a valid Email";
-                  return null; 
-                }),
-
-
-                buildTextField('Phone Number', phoneController, keyboardType: TextInputType.phone, validator: (value){
-                  if (value==null || value.length!=10) return "please Enter a valid phone num";
-                  return null; 
-                }),
-
-
-
-                buildTextField('Address', addressController, maxLines: 3,validator: (value){
-                  if (value==null || value.isEmpty) return "please Enter your Address";
-                  return null; 
-                }),
-
-
-                buildTextField('panCard num', panController, keyboardType: TextInputType.number,validator: (value){
-                  if (value==null || value.length!=10) return "please Enter your valid aadhaar num";
-                  return null; 
-                }),
-
-                SizedBox(height: 20,),
-                ElevatedButton(
-                  onPressed: submitForm, 
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    textStyle: TextStyle(fontSize: 18)
+      body: Container(
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [Colors.teal.shade50, Colors.teal.shade100],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+    ),
+  ),
+  child: Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Card(
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Form(
+          key: formKey,
+          child: ListView(
+            children: [
+              SizedBox(height: 10),
+              buildTextField('Full Name', nameController, icon: Icons.person, validator: (value) {
+                if (value == null || value.isEmpty) return "Please enter your name";
+                return null;
+              }),
+              buildTextField('Email', emailController, keyboardType: TextInputType.emailAddress, icon: Icons.email, validator: (value) {
+                if (value == null || !value.contains('@')) return "Please enter a valid email";
+                return null;
+              }),
+              buildTextField('Phone Number', phoneController, keyboardType: TextInputType.phone, icon: Icons.phone, validator: (value) {
+                if (value == null || value.length != 10) return "Please enter a valid phone number";
+                return null;
+              }),
+              buildTextField('Address', addressController, maxLines: 3, icon: Icons.home, validator: (value) {
+                if (value == null || value.isEmpty) return "Please enter your address";
+                return null;
+              }),
+              buildTextField('PAN Card Number', panController, keyboardType: TextInputType.text, icon: Icons.credit_card, validator: (value) {
+                if (value == null || value.length != 10) return "Please enter your valid PAN card number";
+                return null;
+              }),
+              const SizedBox(height: 25),
+              ElevatedButton(
+                onPressed: submitForm,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  backgroundColor: Colors.teal,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Text('Next'),
-                )
-              ],
-            ),
+                  elevation: 6,
+                  textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-              ) 
+                child: const Text('Next'),
+              ),
+            ],
+          ),
         ),
       ),
+    ),
+  ),
+),
+
     );
   }
 
@@ -140,26 +148,33 @@ class _UserFormState extends State<UserForm> {
   String? Function(String?)? validator,
   int maxLines = 1,
   IconData? icon,
-  }) {
-    return Padding(
-      padding: EdgeInsetsGeometry.symmetric(vertical: 10),
-      child: TextFormField(
-        controller: controller,
-        keyboardType: keyboardType,
-        maxLines: maxLines,
-        validator: validator,
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: labelStyle,
-          prefixIcon: icon != null ? Icon(icon, color: Colors.teal) : null,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 10),
+    child: TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      maxLines: maxLines,
+      validator: validator,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.teal.shade700, fontWeight: FontWeight.w600),
+        prefixIcon: icon != null ? Icon(icon, color: Colors.teal) : null,
+        filled: true,
+        fillColor: Colors.teal.shade50,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal.shade700, width: 2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal.shade200),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
-    );
-  }
-
-  
+    ),
+  );
+}
 
 }
 
